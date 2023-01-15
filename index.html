@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="short icon" href="#">
+    <title>Document</title>
+    <script type="module" src="./app.js"></script>
+    <style>
+        img{
+            display: none;
+        }
+        .d-none{
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 게임 맨 밑 배경 -->
+    <img id="bg-bg-red" src="./img/w-b-b-gaugeground.png">
+    <!-- 배경 -->
+    <img id="w-bg-map" src="./img/w-map2.png">
+    <img id="w-bg-gauge" src="img/w-redgauge-nuky.png">
+    <img id="w-bg-wolf" src="img/w-windwolf.png">
+    <!-- 버튼 -->
+    <img id="w-p-btn" src="img/w-windga2-nu.png">
+    <!-- <img id="w-p-gauge" src="img/w-windga2-nu.png"> -->
+    <img id="w-p-clear" src="img/w-clear.png">
+    <!-- 바람소리 -->
+    <audio id="windsound" src="bgm/휘이이+휘리리릭.mp3"></audio>
+    
+
+    <canvas class="game-canvas" width="1400" height="700" tabindex="0" ></canvas>   <!-- 디스플레이논 삭제,탭인덱스 추가 -->
+    
+    <canvas class="story-canvas d-none" width="1920" height="1080"></canvas>
+</body>
+</html>
