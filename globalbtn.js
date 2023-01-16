@@ -15,6 +15,13 @@ class Btn{
         get clear(){
             return this.#btn.clear;
         }
+
+        // set seeed(value){
+        //     this.#btn=value;
+        // }
+        get speed(){
+            return this.#btn.speed;
+        }
 }
 
 

@@ -12,7 +12,7 @@ export default class PowerBtn{
         this.wsy=410;
 
         // 난도조절
-        this.#speed=1; // 게이지 줄어드는 속도
+        this.#speed=3; // 게이지 줄어드는 속도
         this.#btnSpeed=50; // 스페이스바에 따른 바람의 이동거리
 
 
@@ -28,6 +28,9 @@ export default class PowerBtn{
         this.onWarning=null;
         this.offWarning=null;
     }
+    get speed(){
+        return this.#speed;
+    }
 
     get wsx(){
         return this.#wsx;
@@ -35,7 +38,8 @@ export default class PowerBtn{
 
     update(){
         // 바람 이미지가 줄어든다.
-        this.#wsx-=this.#speed; 
+        if(!this.clear)
+            this.#wsx-=this.#speed; 
 
 
         if(this.#wsx<-830){ // 바람게이지가 0이 되면 점핑(?)한다.
@@ -54,7 +58,7 @@ export default class PowerBtn{
         // 게임 클리어 시 (입김이 창에 끝에 닿으면) 태풍 이미지가 바탕을 채운다.
         if(-130<this.#wsx){
             this.clear=true;
-            this.#speed=0; // 칸이 넘어가면 바람 게이지가 멈춘다.
+            // this.#speed=0; // 칸이 넘어가면 바람 게이지가 멈춘다.
             if(!this.soundCount){  // 소리 한 번만 나오게 하기
                 this.sound.play();
                 this.soundCount=true;

@@ -37,6 +37,7 @@ export default class GameCanvas{
         this.dom.onclick=this.clickHandler.bind(this);
 
         globalbtn.btn=this.btn; // 전역객체만들기
+        //globalbtn.btn.speed=this.btn.speed;
 
         this.typhoonsTimer=1;   // 게임 클리어시 태풍 조작을 위한 변수
 

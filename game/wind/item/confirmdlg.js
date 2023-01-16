@@ -11,6 +11,8 @@ export default class ConfirmDlg{
         this.disWarning=false; // 게이지 30%되면 창 꺼지게
 
         this.onclick=null; // 창 전환용
+
+        this.count=8;  // 계속보기용 카운트
     }
 
     show(){     // 알림 보이게
@@ -41,29 +43,52 @@ export default class ConfirmDlg{
     }
 
     draw(ctx){
-    
+
+        
         if(this.isVisible && !this.disWarning){
             
             
             ctx.fillStyle='#fff7';
             ctx.fillRect(this.x,this.y,this.sw,this.sh)
             ctx.fillStyle='black';
-            ctx.font="bold 35px serif";
-            ctx.fillText("스페이스바를 누르세요",   this.sw+120, this.sh+110)
+            ctx.font="bold 30px serif";
+            ctx.fillText("스페이스바를 연타하세요.",   this.sw+120, this.sh+110)
         }
-
-        if(globalbtn.clear){
+        //console.log(globalbtn.speed) 속도 확인용
+        
+        else if(globalbtn.clear&& 1<globalbtn.speed){
             ctx.fillStyle='#0003';
             ctx.fillRect(0,0,1400,700)
             ctx.fillStyle='#fff9';
             ctx.fillRect(this.x,this.y,this.sw,this.sh)
             ctx.fillStyle='black';
             ctx.font="bold 35px serif";
-            ctx.fillText(`이야기를 계속 보려면`,   this.sw+120, this.sh+80)
-            ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
+            ctx.fillText(`......오잉?!`,   this.sw+120, this.sh+80)
+            ctx.fillText(`벽돌집의 상태가......!`,   this.sw+120, this.sh+140)
+       
+            this.count++; // 다음 메시지를 표시하기 위한 변수
+            console.log(this.count)
         }
-
-
+            // if(100<this.count){
+            //     ctx.clearRect(this.x,this.y,this.sw,this.sh)
+            //     ctx.fillStyle='#fff3';
+            //     ctx.fillRect(this.x,this.y,this.sw,this.sh)
+            //     ctx.fillStyle='black';
+            //     ctx.font="bold 35px serif";
+            //     ctx.fillText(`이야기를 계속 보려면`,   this.sw+120, this.sh+80)
+            //     ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
+            // }
+            if((globalbtn.clear&& globalbtn.speed==1)||(110<this.count)){
+                ctx.fillStyle='#0003';
+                ctx.fillRect(0,0,1400,700)
+                ctx.fillStyle='#fff';
+                ctx.fillRect(this.x,this.y,this.sw,this.sh)
+                ctx.fillStyle='black';
+                ctx.font="bold 35px serif";
+                ctx.fillText(`이야기를 계속 보려면`,   this.sw+120, this.sh+80)
+                ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
+            }
+        
     }
 
 }

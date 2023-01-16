@@ -1,3 +1,5 @@
+import globalbtn from "../../../globalbtn.js";
+
 export default class Typhoon{
     constructor(zx,zy){
         // 게임클리어시 태풍이미지
@@ -30,9 +32,10 @@ export default class Typhoon{
     }
 
     draw(ctx){
-        ctx.drawImage(this.imgClear,
-            this.sx,this.sy,this.sw,this.sh,
-            this.x,this.y,this.rsw,this.rsh)
+        if(globalbtn.speed<=1)   // 첫 째 돼지일 때만 태풍이 불고, 셋 째 돼지일 땐 태풍이 불지 않는다.
+            ctx.drawImage(this.imgClear,
+                this.sx,this.sy,this.sw,this.sh,
+                this.x,this.y,this.rsw,this.rsh)
     }
 
 
