@@ -26,6 +26,10 @@ export default class Background{
         ctx.drawImage(this.imgGrass,
             this.grassX,this.grassY, 3840,2160,
             0,0,1400,700);
+        // 풀밭 사이즈연습
+        ctx.drawImage(this.imgGrass,
+            this.grassX,this.grassY, 1920,1357,
+            0,0,1400,700);
         
         // 늑대 이미지
         ctx.drawImage(this.imgWolf,this.wolfX,this.wolfY);

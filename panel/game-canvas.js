@@ -4,10 +4,11 @@ import Timer from '../game/wind/item/timer.js';
 import RedBasis from '../game/wind/item/red.js';
 import Typoon from '../game/wind/item/typhoon.js';
 import globalbtn from '../globalbtn.js'
+import globaltimer from '../globaltimer.js'
 import ConfirmDlg from '../game/wind/item/confirmdlg.js';
 
 export default class GameCanvas{
-    constructor(){
+    constructor(speed){
         this.dom=document.querySelector(".game-canvas");
         this.dom.focus();
 
@@ -15,9 +16,12 @@ export default class GameCanvas{
         this.ctx = this.dom.getContext("2d");
 
         this.red = new RedBasis();
-        this.btn = new PowerBtn();
+        this.btn = new PowerBtn(speed);   //  this.speed값에 난도변경
+            globalbtn.btn=this.btn; // 전역객체만들기
+
         this.bg = new Background();
         this.timer = new Timer();
+            globaltimer.timer=this.timer; // 전역객체만들기
         this.typhoons = [];
         this.dlg = new ConfirmDlg();
         this.dlg.onclick = this.dlgClickHandler.bind(this); // story-cnavas로 넘어가기
@@ -36,7 +40,7 @@ export default class GameCanvas{
 
         this.dom.onclick=this.clickHandler.bind(this);
 
-        globalbtn.btn=this.btn; // 전역객체만들기
+
         //globalbtn.btn.speed=this.btn.speed;
 
         this.typhoonsTimer=1;   // 게임 클리어시 태풍 조작을 위한 변수

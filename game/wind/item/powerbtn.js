@@ -1,8 +1,10 @@
+import globaltimer from "../../../globaltimer.js";
+
 export default class PowerBtn{
     #speed;
     #btnSpeed;
     #wsx
-    constructor(){
+    constructor(speed){
         // 클리어 시 바람소리
         this.sound=document.querySelector("#windsound")
 
@@ -12,7 +14,7 @@ export default class PowerBtn{
         this.wsy=410;
 
         // 난도조절
-        this.#speed=3; // 게이지 줄어드는 속도
+        this.#speed=speed || 1; // 게이지 줄어드는 속도
         this.#btnSpeed=50; // 스페이스바에 따른 바람의 이동거리
 
 
@@ -38,8 +40,9 @@ export default class PowerBtn{
 
     update(){
         // 바람 이미지가 줄어든다.
-        if(!this.clear)
-            this.#wsx-=this.#speed; 
+        if(!globaltimer.timer==0)
+            if(!this.clear)
+                this.#wsx-=this.#speed; 
 
 
         if(this.#wsx<-830){ // 바람게이지가 0이 되면 점핑(?)한다.

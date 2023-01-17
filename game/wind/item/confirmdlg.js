@@ -1,4 +1,5 @@
 import globalbtn from "../../../globalbtn.js";
+import globaltimer from "../../../globaltimer.js";
 
 export default class ConfirmDlg{
     constructor(){
@@ -27,7 +28,7 @@ export default class ConfirmDlg{
     }
 
     notifyClick(x,y){
-        if((this.x < x && x < this.x+this.sw)&&(this.y<y && y < this.y+this.sh)&&globalbtn.clear)
+        if((this.x < x && x < this.x+this.sw)&&(this.y<y && y < this.y+this.sh)&&(globalbtn.clear||globaltimer.timer==0))
             if(this.onclick!=null){
                 console.log("클릭")
                 this.onclick(3);
@@ -56,7 +57,19 @@ export default class ConfirmDlg{
         }
         //console.log(globalbtn.speed) 속도 확인용
         
-        else if(globalbtn.clear&& 1<globalbtn.speed){
+        if((globaltimer.timer==0)){
+            ctx.fillStyle='#0003';
+            ctx.fillRect(0,0,1400,700)
+            ctx.fillStyle='#fff';
+            ctx.fillRect(this.x,this.y,this.sw,this.sh)
+            ctx.fillStyle='black';
+            ctx.font="bold 35px serif";
+            ctx.fillText(`게임을 스킵하려면`,   this.sw+120, this.sh+80)
+            ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
+        }
+
+
+        else if((globalbtn.clear&& 3<=globalbtn.speed)){
             ctx.fillStyle='#0003';
             ctx.fillRect(0,0,1400,700)
             ctx.fillStyle='#fff9';
@@ -69,25 +82,17 @@ export default class ConfirmDlg{
             this.count++; // 다음 메시지를 표시하기 위한 변수
             console.log(this.count)
         }
-            // if(100<this.count){
-            //     ctx.clearRect(this.x,this.y,this.sw,this.sh)
-            //     ctx.fillStyle='#fff3';
-            //     ctx.fillRect(this.x,this.y,this.sw,this.sh)
-            //     ctx.fillStyle='black';
-            //     ctx.font="bold 35px serif";
-            //     ctx.fillText(`이야기를 계속 보려면`,   this.sw+120, this.sh+80)
-            //     ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
-            // }
-            if((globalbtn.clear&& globalbtn.speed==1)||(110<this.count)){
-                ctx.fillStyle='#0003';
-                ctx.fillRect(0,0,1400,700)
-                ctx.fillStyle='#fff';
-                ctx.fillRect(this.x,this.y,this.sw,this.sh)
-                ctx.fillStyle='black';
-                ctx.font="bold 35px serif";
-                ctx.fillText(`이야기를 계속 보려면`,   this.sw+120, this.sh+80)
-                ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
-            }
+
+        if((globalbtn.clear&& globalbtn.speed<3)||(110<this.count)){
+            ctx.fillStyle='#0003';
+            ctx.fillRect(0,0,1400,700)
+            ctx.fillStyle='#fff';
+            ctx.fillRect(this.x,this.y,this.sw,this.sh)
+            ctx.fillStyle='black';
+            ctx.font="bold 35px serif";
+            ctx.fillText(`이야기를 계속 보려면`,   this.sw+120, this.sh+80)
+            ctx.fillText(`이 칸을 눌러주세요.`,   this.sw+120, this.sh+140)
+        }
         
     }
 
